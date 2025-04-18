@@ -4,6 +4,8 @@
  * This class is used to interface the game display we're using to display the game of chess
 */
 
+package Chess;
+
 public interface GameDisplay{
     public void displayInvalidMove();
 

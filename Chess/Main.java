@@ -4,6 +4,8 @@
  * Starts the game
 */
 
+package Chess;
+
 public class Main{
     public static void main(String[] args) {
         GameLogic chessGame = new GameLogic(new ChessGUI()); // Play game with ChessGUI

@@ -4,6 +4,8 @@
  * This class implements the piece class and runs everything for the Knight piece
 */
 
+package Chess;
+
 public class Knight extends Piece{
     private final int VALUE = 50;
 

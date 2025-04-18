@@ -4,6 +4,8 @@
  * This class implements the piece class and runs everything for the Bishop piece
 */
 
+package Chess;
+
 public class Bishop extends Piece{
     private final int VALUE = 30;
 

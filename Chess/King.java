@@ -4,6 +4,8 @@
  * This class implements the piece class and runs everything for the King piece
 */
 
+package Chess;
+
 public class King extends Piece{
     private final int VALUE = 999;
     // Constructors

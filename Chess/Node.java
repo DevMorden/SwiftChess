@@ -4,6 +4,8 @@
  * This class contains the data contained inside of the Linked List class
 */
 
+package Chess;
+
 public class Node{
     private Move data;
     private Node next;

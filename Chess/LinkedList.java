@@ -4,6 +4,8 @@
  * This class contains the data contained inside of the Linked List class. It's used for selecting what move the computer should make
 */
 
+package Chess;
+
 public class LinkedList{
     private Node top;
 

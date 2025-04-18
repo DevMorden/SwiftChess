@@ -4,6 +4,8 @@
  * This class implements the piece class and runs everything for the Rook piece
 */
 
+package Chess;
+
 public class Rook extends Piece{
     private final int VALUE = 25;
 

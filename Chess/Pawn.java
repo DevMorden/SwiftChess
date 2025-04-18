@@ -4,6 +4,8 @@
  * This class implements the piece class and runs everything for the Pawn piece
 */
 
+package Chess;
+
 public class Pawn extends Piece{
     private final int VALUE = 5;
 

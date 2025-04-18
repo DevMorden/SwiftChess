@@ -4,6 +4,8 @@
  * This class is used to track a move which includes where the piece is and where it's going.
 */
 
+package Chess;
+
 public class Move{
     private int pieceX;
     private int pieceY;

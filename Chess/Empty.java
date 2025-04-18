@@ -4,6 +4,8 @@
  * This class implements the piece class and runs everything for the Empty space
 */
 
+package Chess;
+
 public class Empty extends Piece{
     private final int VALUE = 0;
 

@@ -5,6 +5,8 @@
  * This is what I used when I first built the project and I wanted to keep it just to show what I was able to do
 */
 
+package Chess;
+
 import java.util.Scanner;
 
 public class TextGameDisplay implements GameDisplay{

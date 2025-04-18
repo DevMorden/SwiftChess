@@ -5,6 +5,7 @@
  * moving pieces, selecting difficulty. This speaks directly to the GameLogic which controls the game and doens't have to do any of the game logic itself.
  */
 
+package Chess;
 
 import javax.swing.*;
 import java.awt.*;

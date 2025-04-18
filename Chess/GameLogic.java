@@ -4,6 +4,8 @@
  * This class implements the ChessController interface and controlsa all the game logic
 */
 
+package Chess;
+
 public class GameLogic implements ChessController{
     private final int BOARD_SIZE = 8;
     private GameDisplay display;

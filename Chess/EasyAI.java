@@ -4,6 +4,8 @@
  * This class implements the ChessPlayer interface and is the easier AI
 */
 
+package Chess;
+
 public class EasyAI implements ChessPlayer{
     private final int MAX_PIECES = 16;
     private Move[] pieces; // Computer's pieces with locations

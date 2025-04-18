@@ -4,6 +4,8 @@
  * This class is an abstract class for all the pieces
 */
 
+package Chess;
+
 public abstract class Piece{
     private int team; // 0 means it's the player and 1 means it's the computer
 

@@ -4,6 +4,8 @@
  * This class is used to determine what piece to place in what spot
 */
 
+package Chess;
+
 import java.util.HashMap;
 
 public class PieceImageManager {
