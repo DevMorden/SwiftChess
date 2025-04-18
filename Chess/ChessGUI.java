@@ -1,6 +1,13 @@
+/*
+ * ChessGUI
+ * 
+ * This contains all the code that runs the GUI for the chess game. It includes starting the game, ending the game, 
+ * moving pieces, selecting difficulty. This speaks directly to the GameLogic which controls the game and doens't have to do any of the game logic itself.
+ */
+
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class ChessGUI implements GameDisplay{
     private JFrame frame;

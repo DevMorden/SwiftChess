@@ -1,9 +1,7 @@
 /**
  * Piece
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class is an abstract class for all the pieces
+ * This class is an abstract class for all the pieces
 */
 
 public abstract class Piece{

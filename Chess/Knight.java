@@ -1,9 +1,7 @@
 /**
  * Knight
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the piece class and runs everything for the Knight piece
+ * This class implements the piece class and runs everything for the Knight piece
 */
 
 public class Knight extends Piece{

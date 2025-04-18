@@ -1,9 +1,7 @@
 /**
  * Queen
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the piece class and runs everything for the Queen piece
+ * This class implements the piece class and runs everything for the Queen piece
 */
 
 public class Queen extends Piece{

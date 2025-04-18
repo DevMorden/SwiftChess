@@ -1,9 +1,7 @@
 /**
  * GameLogic
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the ChessController interface and controlsa all the game logic
+ * This class implements the ChessController interface and controlsa all the game logic
 */
 
 public class GameLogic implements ChessController{

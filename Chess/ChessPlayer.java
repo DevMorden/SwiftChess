@@ -1,9 +1,7 @@
 /**
  * ChessPlayer
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class is the interface to the computers of the chess game
+ * This class is the interface to the computers of the chess game
 */
 
 public interface ChessPlayer{

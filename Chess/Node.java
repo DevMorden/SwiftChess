@@ -1,9 +1,7 @@
 /**
  * Node
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class contains the data contained inside of the Linked List class
+ * This class contains the data contained inside of the Linked List class
 */
 
 public class Node{

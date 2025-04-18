@@ -1,9 +1,7 @@
 /**
  * Pawn
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the piece class and runs everything for the Pawn piece
+ * This class implements the piece class and runs everything for the Pawn piece
 */
 
 public class Pawn extends Piece{

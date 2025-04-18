@@ -1,9 +1,7 @@
 /**
  * Empty
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the piece class and runs everything for the Empty space
+ * This class implements the piece class and runs everything for the Empty space
 */
 
 public class Empty extends Piece{

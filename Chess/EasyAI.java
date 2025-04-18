@@ -1,9 +1,7 @@
 /**
  * EasyAI
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the ChessPlayer interface and is the easier AI
+ * This class implements the ChessPlayer interface and is the easier AI
 */
 
 public class EasyAI implements ChessPlayer{

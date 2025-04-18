@@ -1,9 +1,7 @@
 /**
  * Rook
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the piece class and runs everything for the Rook piece
+ * This class implements the piece class and runs everything for the Rook piece
 */
 
 public class Rook extends Piece{

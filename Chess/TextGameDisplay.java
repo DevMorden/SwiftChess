@@ -1,9 +1,8 @@
 /**
  * TextGameDisplay
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the GameDisplay interface and displays the game all through the console
+ * This class implements the GameDisplay interface and displays the game all through the console
+ * This is what I used when I first built the project and I wanted to keep it just to show what I was able to do
 */
 
 import java.util.Scanner;

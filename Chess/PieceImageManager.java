@@ -1,3 +1,9 @@
+/**
+ * PieceImageManager
+ *
+ * This class is used to determine what piece to place in what spot
+*/
+
 import java.util.HashMap;
 
 public class PieceImageManager {

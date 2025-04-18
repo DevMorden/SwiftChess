@@ -1,9 +1,7 @@
 /**
  * Bishop
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class implements the piece class and runs everything for the Bishop piece
+ * This class implements the piece class and runs everything for the Bishop piece
 */
 
 public class Bishop extends Piece{

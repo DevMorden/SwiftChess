@@ -1,9 +1,7 @@
 /**
  * Move
  *
- * @author Matthew Morden, 7965196
- *
- * REMARKS: This class is used to track a move which includes where the piece is and where it's going.
+ * This class is used to track a move which includes where the piece is and where it's going.
 */
 
 public class Move{
