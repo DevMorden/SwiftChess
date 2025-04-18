@@ -18,5 +18,5 @@ They inherit similar functions. The hardest part about this part of the process 
  After I had the whole game running well enough, I started builidng the GUI to make the game easier and more accessible to play.
 
 # How to install
-All of my code is available, but you only need to download the .jar file if you want to play it and test it out. ADD STEPS ON HOW TO DOWNLOAD AND PLAY
+All of my code is available, but you only need to download the .jar file if you want to play it and test it out. 
 You must have Java 17+ downloaded on your machine for it to run.
