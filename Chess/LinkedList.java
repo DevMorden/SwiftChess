@@ -13,7 +13,7 @@ public class LinkedList{
         top = null;
     }
 
-    // This method adds moves to the linked list based on the given value. It places it in a descending order.
+    // This method adds moves to the linked list based. It places the highest value at the top.
     //
     // PARAMETERS:
     //    firstParameter: The toAdd parameter is the move we want to add to the linked list.
@@ -69,5 +69,10 @@ public class LinkedList{
     
             return curr.getData();
         }
+    }
+
+    // This method gets the move at the top of the linked list. Used for HardAI
+    public Move getTop(){
+        return top.getData();
     }
 }

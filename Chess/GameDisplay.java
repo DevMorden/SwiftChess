@@ -8,7 +8,8 @@
 
 public interface GameDisplay{
     public void displayInvalidMove();
-    public int promptForOpponentDifficulty(int maxDifficulty);
+
+    public int startScreen(int maxDifficulty);
     public Move promptForMove();
     public void displayBoard(Piece[][] board);
     public void summarizeMove(Move move);

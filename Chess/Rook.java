@@ -32,6 +32,7 @@ public class Rook extends Piece{
     }
 
     public boolean validateMove(Move move, Piece[][] board){
+        // Checks what direction the rook is moving
         int xDir = move.getMoveX() - move.getPieceX();
         if(xDir > 0){ // Right direction
             xDir = 1;
@@ -42,11 +43,11 @@ public class Rook extends Piece{
         }
 
         int yDir = (move.getMoveY() - move.getPieceY());
-        if(yDir > 0){ // Right direction
+        if (yDir > 0) { // Up direction
             yDir = 1;
-        }else if(yDir < 0){ // Left direction
+        } else if (yDir < 0) { // Down direction
             yDir = -1;
-        }else{ // Does not move on the x-axis
+        } else { // Does not move on the y-axis
             yDir = 0;
         }
         
@@ -56,7 +57,7 @@ public class Rook extends Piece{
         if(xDist == 0 || yDist == 0){
             int dist = Math.max(xDist, yDist);
             for(int i = 1; i < dist; i++){
-                if(board[move.getPieceX() + i*xDir][move.getPieceY() + i*yDir].getTeam() != -1){
+                if (board[move.getPieceY() + i * yDir][move.getPieceX() + i * xDir].getTeam() != -1) {
                     return false;
                 }
             }

@@ -27,8 +27,7 @@ public class Empty extends Piece{
         return "No captures made.";
     }
 
-    public boolean validateMove(Move move, Piece[][] board){
-        System.out.println("EMPTY");
+    public boolean validateMove(Move move, Piece[][] board) {
         return true;
     }
 

@@ -19,7 +19,7 @@ public class TextGameDisplay implements GameDisplay{
         System.out.println("The move you have entered is invalid. Please enter another move.");
     }
 
-    public int promptForOpponentDifficulty(int maxDifficulty){
+    public int startScreen(int maxDifficulty) {
         while(true){
             try{
                 System.out.println("Please enter the desired opponent difficulty, between 0 and " + maxDifficulty + ", where 0 is easiest opponent and " + maxDifficulty + " is hardest opponent.");

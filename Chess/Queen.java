@@ -55,7 +55,7 @@ public class Queen extends Piece{
         if(xDist == yDist){
             for(int i = 1; i < xDist; i++){
                 // System.out.printf("board[%d][%d] has team: %d\n", move.getPieceX() + i*xDir, move.getPieceY() + i*yDir, board[move.getPieceX() + i*xDir][move.getPieceY() + i*yDir].getTeam());
-                if(board[move.getPieceX() + i*xDir][move.getPieceY() + i*yDir].getTeam() != -1){
+                if (board[move.getPieceY() + i * yDir][move.getPieceX() + i * xDir].getTeam() != -1) {
                     return false;
                 }
             }
@@ -64,7 +64,7 @@ public class Queen extends Piece{
             int dist = Math.max(xDist, yDist);
             for(int i = 1; i < dist; i++){
                 // System.out.printf("board[%d][%d] has team: %d\n", move.getPieceX() + i*xDir, move.getPieceY() + i*yDir, board[move.getPieceX() + i*xDir][move.getPieceY() + i*yDir].getTeam());
-                if(board[move.getPieceX() + i*xDir][move.getPieceY() + i*yDir].getTeam() != -1){
+                if (board[move.getPieceY() + i * yDir][move.getPieceX() + i * xDir].getTeam() != -1) {
                     return false;
                 }
             }
@@ -76,5 +76,9 @@ public class Queen extends Piece{
 
     public int getValue(){
         return VALUE;
+    }
+
+    public String getType() {
+        return "queen";
     }
 }

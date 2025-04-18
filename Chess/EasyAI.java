@@ -22,27 +22,27 @@ public class EasyAI implements ChessPlayer{
        numPieces = 0;
 
        // Setting up pieces
-       for(int i = 0; i < 2; i++){
-            for(int j = 0; j < 8; j++){
-                if(i == 0){
-                    if(j == 0 || j == 7){
-                        pieces[numPieces] = new Move(board[j][i], j, i);
+       for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 2; j++){
+                if(j == 0){
+                    if(i == 0 || i == 7){
+                        pieces[numPieces] = new Move(board[j][i], i, j);
                         numPieces++;
-                    }else if(j == 1 || j == 6){
-                        pieces[numPieces] = new Move(board[j][i], j, i);
+                    }else if(i == 1 || i == 6){
+                        pieces[numPieces] = new Move(board[j][i], i, j);
                         numPieces++;
-                    }else if(j == 2 || j == 5){
-                        pieces[numPieces] = new Move(board[j][i], j, i);
+                    }else if(i == 2 || i == 5){
+                        pieces[numPieces] = new Move(board[j][i], i, j);
                         numPieces++;
-                    }else if(j == 3){
-                        pieces[numPieces] = new Move(board[j][i], j, i);
+                    }else if(i == 3){
+                        pieces[numPieces] = new Move(board[j][i], i, j);
                         numPieces++;
-                    }else if(j == 4){
-                        pieces[numPieces] = new Move(board[j][i], j, i);
+                    }else if(i == 4){
+                        pieces[numPieces] = new Move(board[j][i], i, j);
                         numPieces++;
                     }
-                }else if(i == 1){
-                    pieces[numPieces] = new Move(board[j][i], j, i);
+                }else if(j == 1){ // Pawns
+                    pieces[numPieces] = new Move(board[j][i], i, j);
                     numPieces++;
                 }
             }
@@ -74,41 +74,44 @@ public class EasyAI implements ChessPlayer{
                     if(move.getPieceX() + j <= 7 && move.getPieceX() + j >= 0 && move.getPieceY() + 1 <= 7 && move.getPieceY() >= 0){
                         Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() + j, move.getPieceY() + 1); 
                         hold.setPiece(move.getPiece());
-                        hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                        hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
 
-                        if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                        if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1
+                                && hold.getPiece().validateMove(hold, board)) {
                             validMoves.add(hold, 0);
                             numValidMoves++;
                         }
                     }
                 }
-            }else if(move.getPiece() instanceof Rook){ // Rook
+            } else if (move.getPiece() instanceof Rook) { // Rook
                 for(int j = -1; j < 2; j++){
-                    if(j != 0){ // Left and right
+                    if (j != 0) { // Left and right
                         int x = move.getPieceX() + j; // Used to track piece placement
 
-                        while(x <= 7 && x >= 0){
-                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x, move.getPieceY()); 
+                        while (x <= 7 && x >= 0) {
+                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x,
+                                    move.getPieceY());
                             hold.setPiece(move.getPiece());
-                            hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                            hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
                             x += j;
 
-                            if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                            if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1
+                                    && hold.getPiece().validateMove(hold, board)) {
                                 validMoves.add(hold, 0);
                                 numValidMoves++;
                             }
                         }
-                    }else{ // Up and down
-                        for(int k = -1; k < 2; k += 2){
+                } else { // Up and down
+                    for (int k = -1; k < 2; k += 2) {
                             int y = move.getPieceY() + k; // Used to track piece placement
 
-                            while(y <= 7 && y >= 0){
-                                Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX(), y); 
+                            while (y <= 7 && y >= 0) {
+                                Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX(), y);
                                 hold.setPiece(move.getPiece());
-                                hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                                hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
                                 y += k;
 
-                                if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                                if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)) {
                                     validMoves.add(hold, 0);
                                     numValidMoves++;
                                 }
@@ -116,16 +119,16 @@ public class EasyAI implements ChessPlayer{
                         }
                     }
                 }
-            }else if(move.getPiece() instanceof Knight){ // Knight
+            } else if (move.getPiece() instanceof Knight) { // Knight
                 // Checking left and right
                 for(int j = -2; j < 3; j += 4){
-                    for(int k = -1; k < 2; k += 2){
-                        if(move.getPieceX() + j <= 7 && move.getPieceX() + j >= 0 && move.getPieceY() + k <= 7 && move.getPieceY() + k >= 0){
-                            Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() + j, move.getPieceY() + k); 
+                    for (int k = -1; k < 2; k += 2) {
+                        if (move.getPieceX() + j <= 7 && move.getPieceX() + j >= 0 && move.getPieceY() + k <= 7 && move.getPieceY() + k >= 0) {
+                            Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() + j, move.getPieceY() + k);
                             hold.setPiece(move.getPiece());
-                            hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                            hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
 
-                            if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                            if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)) {
                                 validMoves.add(hold, 0);
                                 numValidMoves++;
                             }
@@ -134,14 +137,14 @@ public class EasyAI implements ChessPlayer{
                 }
 
                 // Checking up and down
-                for(int j = -2; j < 3; j += 4){
-                    for(int k = -1; k < 2; k += 2){
-                        if(move.getPieceX() + k <= 7 && move.getPieceX() + k >= 0 && move.getPieceY() + j <= 7 && move.getPieceY() + j >= 0){
-                            Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() + k, move.getPieceY() + j); 
+                for (int j = -2; j < 3; j += 4) {
+                    for (int k = -1; k < 2; k += 2) {
+                        if (move.getPieceX() + k <= 7 && move.getPieceX() + k >= 0 && move.getPieceY() + j <= 7 && move.getPieceY() + j >= 0) {
+                            Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() + k, move.getPieceY() + j);
                             hold.setPiece(move.getPiece());
-                            hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                            hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
 
-                            if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                            if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)) {
                                 validMoves.add(hold, 0);
                                 numValidMoves++;
                             }
@@ -149,19 +152,19 @@ public class EasyAI implements ChessPlayer{
                     }
                 }
             }else if(move.getPiece() instanceof Bishop){ // Bishop
-                for(int j = -1; j < 2; j += 2){
-                    for(int k = -1; k < 2; k += 2){
+                for (int j = -1; j < 2; j += 2) {
+                    for (int k = -1; k < 2; k += 2) {
                         int x = move.getPieceX() + j; // Used to track piece placement
                         int y = move.getPieceY() + k; // Used to track piece placement
 
-                        while(x <= 7 && x >= 0 && y <= 7 && y >= 0){
-                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x, y); 
+                        while (x <= 7 && x >= 0 && y <= 7 && y >= 0) {
+                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x, y);
                             hold.setPiece(move.getPiece());
-                            hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                            hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
                             y += k;
                             x += j;
 
-                            if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                            if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)) {
                                 validMoves.add(hold, 0);
                                 numValidMoves++;
                             }
@@ -169,19 +172,19 @@ public class EasyAI implements ChessPlayer{
                     }
                 }
             }else if(move.getPiece() instanceof Queen){ // Queen
-                for(int j = -1; j < 2; j += 2){
-                    for(int k = -1; k < 2; k += 2){
+                for (int j = -1; j < 2; j += 2) {
+                    for (int k = -1; k < 2; k += 2) {
                         int x = move.getPieceX() + j; // Used to track piece placement
                         int y = move.getPieceY() + k; // Used to track piece placement
                         
-                        while(x <= 7 && x >= 0 && y <= 7 && y >= 0){
-                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x, y); 
+                        while (x <= 7 && x >= 0 && y <= 7 && y >= 0) {
+                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x, y);
                             hold.setPiece(move.getPiece());
-                            hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
+                            hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
                             y += k;
                             x += j;
 
-                            if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                            if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)) {
                                 validMoves.add(hold, 0);
                                 numValidMoves++;
                             }
@@ -189,49 +192,52 @@ public class EasyAI implements ChessPlayer{
                     }
                 }
 
-                for(int j = -1; j < 2; j++){
-                    if(j != 0){ // Left and right
-                        int x = move.getPieceX() + j; // Used to track piece placement
+            for (int j = -1; j < 2; j++) {
+                if (j != 0) { // Left and right
+                    int x = move.getPieceX() + j; // Used to track piece placement
 
-                        while(x <= 7 && x >= 0){
-                            Move hold = new Move(move.getPieceX(), move.getPieceY(), x, move.getPieceY()); 
+                    while (x <= 7 && x >= 0) {
+                        Move hold = new Move(move.getPieceX(), move.getPieceY(), x,move.getPieceY());
+                        hold.setPiece(move.getPiece());
+                        hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
+                        x += j;
+
+                        if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1
+                                && hold.getPiece().validateMove(hold, board)) {
+                            validMoves.add(hold, 0);
+                            numValidMoves++;
+                        }
+                    }
+                } else { // Up and down
+                    for (int k = -1; k < 2; k += 2) {
+                        int y = move.getPieceY() + k; // Used to track piece placement
+
+                        while (y <= 7 && y >= 0) {
+                            Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX(),
+                                    y);
                             hold.setPiece(move.getPiece());
-                            hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
-                            x += j;
+                            hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
+                            y += k;
 
-                            if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
+                            if (board[hold.getMoveY()][hold.getMoveX()].getTeam() != 1
+                                    && hold.getPiece().validateMove(hold, board)) {
                                 validMoves.add(hold, 0);
                                 numValidMoves++;
                             }
                         }
-                    }else{ // Up and down
-                        for(int k = -1; k < 2; k += 2){
-                            int y = move.getPieceY() + k; // Used to track piece placement
-
-                            while(y <= 7 && y >= 0){
-                                Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX(), y); 
-                                hold.setPiece(move.getPiece());
-                                hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
-                                y += k;
-
-                                if(board[hold.getMoveX()][hold.getMoveY()].getTeam() != 1 && hold.getPiece().validateMove(hold, board)){
-                                    validMoves.add(hold, 0);
-                                    numValidMoves++;
-                                }
-                            }
-                        }
                     }
                 }
+            }
             }else if(move.getPiece() instanceof King){ // King
-                for(int j = -1; j < 2; j++){ // X
-                    for(int k = -1; k < 2; k++){ // Y
-                        if(j != 0 || k != 0){
-                            if(move.getPieceX() + j <= 7 && move.getPieceX() + j >= 0 && move.getPieceY() + k <= 7 && move.getPieceY() + k >= 0){
-                                if(board[move.getPieceX() + j][move.getPieceY() + k].getTeam() != 1){
-                                    Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() + j, move.getPieceY() + k); 
+                for (int j = -1; j < 2; j++) { // X
+                    for (int k = -1; k < 2; k++) { // Y
+                        if (j != 0 || k != 0) {
+                            if (move.getPieceX() + j <= 7 && move.getPieceX() + j >= 0 && move.getPieceY() + k <= 7 && (move.getPieceY() + k) >= 0) {
+                                if (board[move.getPieceY() + k][move.getPieceX() + j].getTeam() != 1) {
+                                    Move hold = new Move(move.getPieceX(), move.getPieceY(), move.getPieceX() +j, move.getPieceY() + k);
                                     hold.setPiece(move.getPiece());
-                                    hold.setCapturePiece(board[hold.getMoveX()][hold.getMoveY()]);
-                                    if(hold.getPiece().validateMove(hold, board)){
+                                    hold.setCapturePiece(board[hold.getMoveY()][hold.getMoveX()]);
+                                    if (hold.getPiece().validateMove(hold, board)) {
                                         validMoves.add(hold, 0);
                                     }
                                 }
@@ -252,7 +258,6 @@ public class EasyAI implements ChessPlayer{
                 pieces[i].setPieceY(toReturn.getMoveY());
             }
         }
-
         return toReturn;
     }
 
@@ -276,16 +281,16 @@ public class EasyAI implements ChessPlayer{
         int randomNumber = (int)(Math.random() * 4); // 0 to 3
         if(randomNumber == 0){ // Rook
             move.setPiece(new Rook(1));
-            board[move.getMoveX()][move.getMoveY()] = move.getPiece();
+            board[move.getMoveY()][move.getMoveX()] = move.getPiece();
         }else if(randomNumber == 1){ // Knight
             move.setPiece(new Knight(1));
-            board[move.getMoveX()][move.getMoveY()] = move.getPiece();
+            board[move.getMoveY()][move.getMoveX()] = move.getPiece();
         }else if(randomNumber == 2){ // Bishop
             move.setPiece(new Bishop(1));
-            board[move.getMoveX()][move.getMoveY()] = move.getPiece();
+            board[move.getMoveY()][move.getMoveX()] = move.getPiece();
         }else if(randomNumber == 3){ // Queen
             move.setPiece(new Queen(1));
-            board[move.getMoveX()][move.getMoveY()] = move.getPiece();
+            board[move.getMoveY()][move.getMoveX()] = move.getPiece();
         }
 
         for(int i = 0; i < numPieces; i++){
@@ -294,7 +299,5 @@ public class EasyAI implements ChessPlayer{
             }
             
         }
-
-        System.out.printf("Pawn at (%d,%d) promoted to %s.\n", move.getMoveX(), move.getMoveY(), move.getPiece().getName());
     }
 }

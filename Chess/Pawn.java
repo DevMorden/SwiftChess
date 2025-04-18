@@ -8,6 +8,7 @@
 
 public class Pawn extends Piece{
     private final int VALUE = 5;
+
     // Constructors
     public Pawn(int team){
         super(team);
@@ -32,27 +33,35 @@ public class Pawn extends Piece{
 
     public boolean validateMove(Move move, Piece[][] board){
         if(getTeam() == 0){
-            if(board[move.getMoveX()][move.getMoveY()].getTeam() == 1){
+            if (board[move.getMoveY()][move.getMoveX()].getTeam() == 1) { // Check if you're attacking another piece
                 int xDirection = (move.getMoveX() - move.getPieceX()) > 0 ? 1 : -1; // 1 means its a right direction, -1 means its a left direction
                 if(move.getMoveY() == move.getPieceY() - 1 && move.getMoveX() == move.getPieceX() + xDirection){
                     return true;
                 }
             }else{
                 // Just moving
-                if(move.getMoveY() == move.getPieceY() - 1 && move.getMoveX() == move.getPieceX()){
+                if (move.getMoveY() == move.getPieceY() - 1 && move.getMoveX() == move.getPieceX()) {
                     return true;
+                } else if (move.getPieceY() == 6){
+                    if (move.getMoveY() == move.getPieceY() - 2 && move.getMoveX() == move.getPieceX()) {
+                        return true;
+                    }
                 }
             }
         }else if(getTeam() == 1){
-            if(board[move.getMoveX()][move.getMoveY()].getTeam() == 0){
+            if (board[move.getMoveY()][move.getMoveX()].getTeam() == 0) { // Check if you're attacking another piece
                 int xDirection = (move.getMoveX() - move.getPieceX()) > 0 ? 1 : -1; // 1 means its a right direction, -1 means its a left direction
                 if(move.getMoveY() == move.getPieceY() + 1 && move.getMoveX() == move.getPieceX() + xDirection){
                     return true;
                 }
             }else{
                 // Just moving
-                if(move.getMoveY() == move.getPieceY() + 1 && move.getMoveX() == move.getPieceX()){
+                if (move.getMoveY() == move.getPieceY() + 1 && move.getMoveX() == move.getPieceX()) {
                     return true;
+                } else if(move.getPieceY() == 6) {
+                    if (move.getMoveY() == move.getPieceY() + 2 && move.getMoveX() == move.getPieceX()) {
+                        return true;
+                    }
                 }
             }
         }

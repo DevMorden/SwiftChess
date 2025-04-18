@@ -32,42 +32,43 @@ public class GameLogic implements ChessController{
     //    This method returns true if the move was valid and returns false if the move was not valid.
     public boolean movePiece(Move move, int team){
         if(move.getPieceX() < 0 && move.getPieceX() > 7 || move.getPieceY() < 0 || move.getPieceY() > 7 || move.getMoveX() < 0 || move.getMoveX() > 7 
-        || move.getMoveY() < 0 || move.getMoveY() > 7){
+                || move.getMoveY() < 0 || move.getMoveY() > 7) { // Check for bounds
             display.displayInvalidMove();
             return false;
-        }else if(board[move.getPieceX()][move.getPieceY()].getTeam() != team || board[move.getMoveX()][move.getMoveY()].getTeam() == team){
+        } else if (board[move.getPieceY()][move.getPieceX()].getTeam() != team
+                || board[move.getMoveY()][move.getMoveX()].getTeam() == team) {
             display.displayInvalidMove();
             return false;
         }else{
-            if(!board[move.getPieceX()][move.getPieceY()].validateMove(move, board)){
+            if (!board[move.getPieceY()][move.getPieceX()].validateMove(move, board)) {
                 display.displayInvalidMove();
                 return false;
             }else{
                 // Move is valid and can now perform the move
-                move.setPiece(board[move.getPieceX()][move.getPieceY()]);
-                move.setCapturePiece(board[move.getMoveX()][move.getMoveY()]);
+                move.setPiece(board[move.getPieceY()][move.getPieceX()]);
+                move.setCapturePiece(board[move.getMoveY()][move.getMoveX()]);
 
                 // Deleting piece from computer if it's a capture
-                if(!(board[move.getMoveX()][move.getMoveY()] instanceof Empty)){
+                if (!(board[move.getMoveY()][move.getMoveX()] instanceof Empty) && board[move.getPieceY()][move.getPieceX()].getTeam() != 1) {
                     computer.removePiece(move);
                 }
 
-                board[move.getMoveX()][move.getMoveY()] = board[move.getPieceX()][move.getPieceY()];
-                board[move.getPieceX()][move.getPieceY()] = new Empty(-1);
+                board[move.getMoveY()][move.getMoveX()] = board[move.getPieceY()][move.getPieceX()];
+                board[move.getPieceY()][move.getPieceX()] = new Empty(-1);
 
                 // Check for pawn promotion
-                if(board[move.getMoveX()][move.getMoveY()] instanceof Pawn){
+                if (board[move.getMoveY()][move.getMoveX()] instanceof Pawn) {
                     if(team == 0){
-                        if(move.getMoveY() == 0){
+                        if (move.getMoveY() == 0) {
                             int input = display.promptPawnPromotion();
                             if(input == 0){ // Rook
-                                board[move.getMoveX()][move.getMoveY()] = new Rook(0);
+                                board[move.getMoveY()][move.getMoveX()] = new Rook(0);
                             }else if(input == 1){ // Knight
-                                board[move.getMoveX()][move.getMoveY()] = new Knight(0);
+                                board[move.getMoveY()][move.getMoveX()] = new Knight(0);
                             }else if(input == 2){ // Bishop
-                                board[move.getMoveX()][move.getMoveY()] = new Bishop(0);
+                                board[move.getMoveY()][move.getMoveX()] = new Bishop(0);
                             }else if(input == 3){ // Queen
-                                board[move.getMoveX()][move.getMoveY()] = new Queen(0);
+                                board[move.getMoveY()][move.getMoveX()] = new Queen(0);
                             }
                         }
                     }else if(team == 1){
@@ -89,36 +90,36 @@ public class GameLogic implements ChessController{
     public void reset(){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
-                if(i == 0){
-                    if(j == 0 || j == 7){
-                        board[j][i] = new Rook(1);
-                    }else if(j == 1 || j == 6){
-                        board[j][i] = new Knight(1);
-                    }else if(j == 2 || j == 5){
-                        board[j][i] = new Bishop(1);
-                    }else if(j == 3){
-                        board[j][i] = new King(1);
-                    }else if(j == 4){
-                        board[j][i] = new Queen(1);
+                if (i == 0) {
+                    if (j == 0 || j == 7) {
+                        board[i][j] = new Rook(1);
+                    } else if (j == 1 || j == 6) {
+                        board[i][j] = new Knight(1);
+                    } else if (j == 2 || j == 5) {
+                        board[i][j] = new Bishop(1);
+                    } else if (j == 3) {
+                        board[i][j] = new King(1);
+                    } else if (j == 4) {
+                        board[i][j] = new Queen(1);
                     }
-                }else if(i == 1){
-                    board[j][i] = new Pawn(1);
-                }else if(i == 7){
-                    if(j == 0 || j == 7){
-                        board[j][i] = new Rook(0);
-                    }else if(j == 1 || j == 6){
-                        board[j][i] = new Knight(0);
-                    }else if(j == 2 || j == 5){
-                        board[j][i] = new Bishop(0);
-                    }else if(j == 3){
-                        board[j][i] = new King(0);
-                    }else if(j == 4){
-                        board[j][i] = new Queen(0);
+                } else if (i == 1) {
+                    board[i][j] = new Pawn(1);
+                } else if (i == 7) {
+                    if (j == 0 || j == 7) {
+                        board[i][j] = new Rook(0);
+                    } else if (j == 1 || j == 6) {
+                        board[i][j] = new Knight(0);
+                    } else if (j == 2 || j == 5) {
+                        board[i][j] = new Bishop(0);
+                    } else if (j == 3) {
+                        board[i][j] = new King(0);
+                    } else if (j == 4) {
+                        board[i][j] = new Queen(0);
                     }
-                }else if(i == 6){
-                    board[j][i] = new Pawn(0);
+                } else if (i == 6) {
+                    board[i][j] = new Pawn(0);
                 }else{
-                    board[j][i] = new Empty(-1);
+                    board[i][j] = new Empty(-1);
                 }
             }
         }
@@ -134,7 +135,7 @@ public class GameLogic implements ChessController{
         while(playAgain){
             reset();
             boolean run = true;
-            int difficulty = display.promptForOpponentDifficulty(1);
+            int difficulty = display.startScreen(1);
             if(difficulty == 0){
                 computer = new EasyAI(board);
             }else if(difficulty == 1){

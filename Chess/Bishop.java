@@ -41,7 +41,7 @@ public class Bishop extends Piece{
             return false;
         }else{
             for(int i = 1; i < xDist; i++){
-                if(board[move.getPieceX() + i*xDir][move.getPieceY() + i*yDir].getTeam() != -1){
+                if(board[move.getPieceY() + i*yDir][move.getPieceX() + i*xDir].getTeam() != -1){
                     return false;
                 }
             }
